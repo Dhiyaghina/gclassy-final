@@ -89,12 +89,15 @@
 
     <div class="navbar">
         <h1>GClassy</h1>
-        <a class="logout" href="../logout.php">Logout</a>
+        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+            @csrf
+            <button type="submit" class="logout">Logout</button>
+        </form>
     </div>
 
     <div class="dashboard-container">
         <div class="welcome">
-            Selamat datang,  👩‍🏫
+            <p>Selamat datang, {{ auth()->user()->name }}</p>
         </div>
 
         <div class="cards">
