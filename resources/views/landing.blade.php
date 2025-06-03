@@ -112,7 +112,7 @@
             <div class="navbar-nav ml-auto">
                 <a class="nav-link text-white" href="#">Beranda</a>
                 <a class="nav-link text-white" href="#">Kelas</a>
-                <a class="nav-link text-white" href="login.blade">Masuk</a>
+                <a class="nav-link text-white" href="login">Masuk</a>
             </div>
         </div>
     </nav>
