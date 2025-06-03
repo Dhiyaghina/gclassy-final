@@ -1,36 +1,39 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Kelas;
 
 Route::get('/', function () {
-     $kelas = Kelas::with('guru')->get(); // ambil semua kelas + data guru
+    $kelas = Kelas::all(); // Ambil semua data kelas
     return view('landing', compact('kelas'));
-});
+})->name('dashboard');// nama route tetap 'dashboard' agar tidak error
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Route::get('/kelas', function () {
+    if (Auth::check()) {
+        $role = Auth::user()->role;
+        return $role === 'siswa'
+            ? redirect()->route('kelas.siswa')
+            : redirect()->route('kelas.guru');
+    }
+    return redirect()->route('login');
+})->name('kelas');
 
-Route::middleware(['auth'])->group(function () {
-    // Admin
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    // Guru
-    Route::get('/guru/dashboard', function () {
-        return view('guru.dashboard');
-    })->name('guru.dashboard');
+// Tambahkan route dashboard siswa dan guru
+Route::get('/siswa/dashboard', function () {
+    return view('siswa.dashboard');
+})->name('kelas.siswa');
 
-    // Siswa
-    Route::get('/siswa/dashboard', function () {
-        return view('siswa.dashboard');
-    })->name('siswa.dashboard');
-});
+Route::get('/guru/dashboard', function () {
+    return view('guru.dashboard');
+})->name('kelas.guru');
 
-require __DIR__.'/auth.php';
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->name('kelas.admin');

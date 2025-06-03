@@ -110,9 +110,9 @@
         <div class="container">
             <a class="navbar-brand text-white" href="#">GClassy</a>
             <div class="navbar-nav ml-auto">
-                <a class="nav-link text-white" href="#">Beranda</a>
+                <a class="nav-link" href="{{ route('dashboard') }}">Beranda</a>
                 <a class="nav-link text-white" href="#">Kelas</a>
-                <a class="nav-link text-white" href="login.blade">Masuk</a>
+                <a class="nav-link text-white" href="{{ route('login') }}">Masuk</a>
             </div>
         </div>
     </nav>
