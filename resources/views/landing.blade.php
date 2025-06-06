@@ -112,7 +112,11 @@
             <div class="navbar-nav ml-auto">
                 <a class="nav-link" href="{{ route('dashboard') }}">Beranda</a>
                 <a class="nav-link text-white" href="#">Kelas</a>
+<<<<<<< HEAD
                 <a class="nav-link text-white" href="{{ route('login') }}">Masuk</a>
+=======
+                <a class="nav-link text-white" href="login">Masuk</a>
+>>>>>>> 485e2be00dfcdd1cbb29eb4a1948dac6dd880ee8
             </div>
         </div>
     </nav>

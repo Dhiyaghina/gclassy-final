@@ -34,6 +34,3 @@ Route::get('/guru/dashboard', function () {
     return view('guru.dashboard');
 })->name('kelas.guru');
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->name('kelas.admin');
