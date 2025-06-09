@@ -22,9 +22,11 @@ class LoginController extends Controller
             $request->session()->regenerate();
             $user = Auth::user();
                 if ($user->role === 'siswa') {
-                    return redirect()->route('kelas.siswa');
+                return redirect()->route('kelas.siswa');
                 } elseif ($user->role === 'guru') {
                     return redirect()->route('kelas.guru');
+                } elseif ($user->role === 'admin') {
+                    return redirect()->route('kelas.admin');
                 } else {
                     return redirect('/dashboard');
                 }
