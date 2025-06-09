@@ -113,7 +113,6 @@
                 <a class="nav-link" href="{{ route('dashboard') }}">Beranda</a>
                 <a class="nav-link text-white" href="#">Kelas</a>
                 <a class="nav-link text-white" href="{{ route('login') }}">Masuk</a>
-                <a class="nav-link text-white" href="login">Masuk</a>
             </div>
         </div>
     </nav>

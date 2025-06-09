@@ -13,7 +13,7 @@ return new class extends Migration
 {
     Schema::create('kelas', function (Blueprint $table) {
         $table->id();
-        $table->string('gambar')->nullable();
+        $table->string('gambar');
         $table->string('nama'); // Contoh: Kimia X IPA 1
         $table->string('tingkatan'); // X IPA 1
         $table->foreignId('guru_id')->constrained('users')->onDelete('cascade');
