@@ -45,4 +45,17 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+            public function hasRole($role)
+        {
+            return $this->role === $role;
+        }
+        public function kelasGuru()
+        {
+            return $this->hasMany(Kelas::class, 'guru_id');
+        }
+
+        public function kelasSiswa()
+        {
+            return $this->belongsToMany(Kelas::class, 'kelas_siswa', 'siswa_id', 'kelas_id');
+        }
 }
