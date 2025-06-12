@@ -6,20 +6,34 @@ use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\ClassRoomController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Teacher\DashboardController as TeacherDashboardController;
+use App\Http\Controllers\Teacher\ClassController as TeacherClassController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    // Check if user is logged in and is admin
-    if (auth()->check() && auth()->user()->isAdmin()) {
-        return redirect()->route('admin.dashboard');
+    // Check if user is logged in and redirect based on role
+    if (auth()->check()) {
+        $user = auth()->user();
+        if ($user->isAdmin()) {
+            return redirect()->route('admin.dashboard');
+        } elseif ($user->isTeacher()) {
+            return redirect()->route('teacher.dashboard');
+        } elseif ($user->isStudent()) {
+            return redirect()->route('dashboard'); // Student dashboard
+        }
     }
     return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    // Check if user is admin and redirect to admin dashboard
-    if (auth()->check() && auth()->user()->isAdmin()) {
-        return redirect()->route('admin.dashboard');
+    // Check user role and redirect accordingly
+    if (auth()->check()) {
+        $user = auth()->user();
+        if ($user->isAdmin()) {
+            return redirect()->route('admin.dashboard');
+        } elseif ($user->isTeacher()) {
+            return redirect()->route('teacher.dashboard');
+        }
     }
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -68,6 +82,13 @@ Route::middleware('auth')->group(function () {
         Route::post('/enrollment', [App\Http\Controllers\Student\EnrollmentController::class, 'store'])->name('enrollment.store');
         Route::delete('/enrollment/{classRoom}', [App\Http\Controllers\Student\EnrollmentController::class, 'leave'])->name('enrollment.leave');
     });
+});
+
+// Teacher Routes
+Route::prefix('teacher')->middleware(['auth', 'teacher'])->name('teacher.')->group(function () {
+    Route::get('/', [TeacherDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/classes', [TeacherClassController::class, 'index'])->name('classes.index');
+    Route::get('/classes/{classRoom}', [TeacherClassController::class, 'show'])->name('classes.show');
 });
 
 require __DIR__.'/auth.php';

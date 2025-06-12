@@ -11,6 +11,8 @@ Sistem admin E-learning yang komprehensif dibangun dengan Laravel 11, menampilka
 -   ✅ Sistem autentikasi Laravel Breeze
 -   ✅ Kontrol akses berbasis peran (Admin, Guru, Siswa)
 -   ✅ AdminMiddleware untuk proteksi rute
+-   ✅ **TeacherMiddleware untuk proteksi rute guru**
+-   ✅ **Redirect otomatis berdasarkan role setelah login**
 -   ✅ Admin seeder (admin@gmail.com / admin123)
 
 ### 2. Skema Database
@@ -119,7 +121,17 @@ Sistem admin E-learning yang komprehensif dibangun dengan Laravel 11, menampilka
 -   ✅ **Siswa dapat keluar dari kelas reguler**
 -   ✅ **Layout khusus untuk student portal**
 
-### 13. Perbaikan Teknis
+### 14. Portal Guru (BARU)
+
+-   ✅ **Dashboard guru dengan statistik kelas yang diampu**
+-   ✅ **Daftar kelas yang diajar guru dengan detail siswa**
+-   ✅ **Detail kelas dengan informasi siswa terdaftar**
+-   ✅ **Statistik pembayaran untuk kelas yang diampu**
+-   ✅ **Layout khusus untuk portal guru**
+-   ✅ **Middleware TeacherMiddleware untuk proteksi akses**
+-   ✅ **Redirect otomatis guru ke dashboard guru setelah login**
+
+### 15. Perbaikan Teknis
 
 -   ✅ Konflik CSS diperbaiki dengan sintaks kondisional yang benar
 -   ✅ Nilai enum database disesuaikan ("regular" → "reguler")
