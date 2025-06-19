@@ -1,11 +1,14 @@
-# GClassy Admin - E-Learning Management System
-
 <p align="center">
+  <img src="https://img.shields.io/badge/Gclassy-Learning%20Platform-blue?style=for-the-badge&logo=graduation-cap" alt="Gclassy Badge">
+</p>
+
+<p align="center">    
   <img src="https://img.shields.io/badge/Laravel-11.x-red.svg" alt="Laravel Version">
   <img src="https://img.shields.io/badge/PHP-8.2+-blue.svg" alt="PHP Version">
   <img src="https://img.shields.io/badge/TailwindCSS-3.x-teal.svg" alt="TailwindCSS">
   <img src="https://img.shields.io/badge/Status-Production%20Ready-green.svg" alt="Status">
 </p>
+
 
 ## 📋 Daftar Isi
 
